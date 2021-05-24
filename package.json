@@ -1,0 +1,14 @@
+{
+  "name": "l-node",
+  "version": "0.0.0",
+  "description": "l in node environment",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/panlina/l-node.git"
+  },
+  "author": "Jack Lu <jacklu@jacklu.me>",
+  "license": "ISC",
+  "dependencies": {
+    "l": "https://github.com/panlina/l.git"
+  }
+}
