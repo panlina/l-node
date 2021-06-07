@@ -6,7 +6,7 @@ var interpretation = require('l/test/f');
 
 var [, , source] = process.argv;
 var s = parse(source);
-var f = compile(s, new Environment(new Scope({ console: 'variable' })), interpretation);
-var environment = new Environment(new Scope({ console: require('./environment/console') }));
+var f = compile(s, new Environment(new Scope({ console: 'variable', fs: 'variable' })), interpretation);
+var environment = new Environment(new Scope({ console: require('./environment/console'), fs: require('./environment/fs') }));
 var v = f(environment);
 console.log(v);
