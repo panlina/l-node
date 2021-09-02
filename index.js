@@ -10,12 +10,14 @@ try {
 	var f = compile(s, new Environment(new Scope({
 		console: 'variable',
 		fs: 'variable',
-		math: 'variable'
+		math: 'variable',
+		string: 'variable'
 	})), interpretation);
 	var environment = new Environment(new Scope({
 		console: require('./environment/console'),
 		fs: require('./environment/fs'),
-		math: require('./environment/math')
+		math: require('./environment/math'),
+		string: require('./environment/string')
 	}));
 	var v = f(environment);
 	console.log(v);
