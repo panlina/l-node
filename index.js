@@ -12,14 +12,16 @@ try {
 		fs: 'variable',
 		math: 'variable',
 		string: 'variable',
-		array: 'variable'
+		array: 'variable',
+		object: 'variable'
 	})), interpretation);
 	var environment = new Environment(new Scope({
 		console: require('./environment/console'),
 		fs: require('./environment/fs'),
 		math: require('./environment/math'),
 		string: require('./environment/string'),
-		array: require('./environment/array')
+		array: require('./environment/array'),
+		object: require('./environment/object')
 	}));
 	var v = f(environment);
 	console.log(v);
