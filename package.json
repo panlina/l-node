@@ -10,5 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "l": "https://github.com/panlina/l.git"
-  }
+  },
+  "bin": "./index.js"
 }
