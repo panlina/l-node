@@ -26,5 +26,6 @@ try {
 	var v = f(environment);
 	console.log(v);
 } catch (e) {
+	process.exitCode = 1;
 	console.error(e.message);
 }
