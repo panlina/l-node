@@ -11,6 +11,7 @@ try {
 		console: 'variable',
 		fs: 'variable',
 		math: 'variable',
+		number: 'variable',
 		string: 'variable',
 		array: 'variable',
 		object: 'variable'
@@ -19,6 +20,7 @@ try {
 		console: require('./environment/console'),
 		fs: require('./environment/fs'),
 		math: require('./environment/math'),
+		number: require('./environment/number'),
 		string: require('./environment/string'),
 		array: require('./environment/array'),
 		object: require('./environment/object')
