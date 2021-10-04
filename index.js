@@ -15,6 +15,7 @@ try {
 		string: 'variable',
 		array: 'variable',
 		object: 'variable',
+		global: 'variable',
 		js: 'variable'
 	})), interpretation);
 	var environment = new Environment(new Scope({
@@ -25,6 +26,7 @@ try {
 		string: require('./environment/string'),
 		array: require('./environment/array'),
 		object: require('./environment/object'),
+		global: require('./environment/global'),
 		js: require('./environment/js')
 	}));
 	var v = f(environment);
