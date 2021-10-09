@@ -16,7 +16,8 @@ try {
 		array: 'variable',
 		object: 'variable',
 		global: 'variable',
-		js: 'variable'
+		js: 'variable',
+		node: 'variable'
 	})), interpretation);
 	var environment = require('l/test/f.global').push(new Scope({
 		console: require('./environment/console'),
@@ -27,7 +28,8 @@ try {
 		array: require('./environment/array'),
 		object: require('./environment/object'),
 		global: require('./environment/global'),
-		js: require('./environment/js')
+		js: require('./environment/js'),
+		node: { require: require }
 	}));
 	var v = f(environment);
 	console.log(v);
