@@ -23,7 +23,6 @@ try {
 	}));
 	var f = compile(s, environment, interpretation);
 	var runtimeEnvironment = require('l/test/f.global').push(new Scope({
-		fs: require('./environment/fs'),
 		math: require('./environment/math'),
 		number: require('./environment/number'),
 		string: require('./environment/string'),
@@ -34,6 +33,7 @@ try {
 		node: { require: require }
 	}));
 	runtimeEnvironment.scope.console = load('./environment/console.l');
+	runtimeEnvironment.scope.fs = load('./environment/fs.l');
 	function load(file) {
 		var source = fs.readFileSync(path.join(__dirname, file), 'utf8');
 		var s = parse(source);
