@@ -1,3 +1,5 @@
+var fs = require('fs');
+var path = require('path');
 var Scope = require('l/Scope');
 var parse = require('l/parse');
 var compile = require('l/compile');
@@ -7,7 +9,7 @@ var interpretation = require('l/test/f');
 var [, , source] = process.argv;
 try {
 	var s = parse(source);
-	var f = compile(s, global.push(new Scope({
+	var environment = global.push(new Scope({
 		console: 'variable',
 		fs: 'variable',
 		math: 'variable',
@@ -18,9 +20,9 @@ try {
 		global: 'variable',
 		js: 'variable',
 		node: 'variable'
-	})), interpretation);
-	var environment = require('l/test/f.global').push(new Scope({
-		console: require('./environment/console'),
+	}));
+	var f = compile(s, environment, interpretation);
+	var runtimeEnvironment = require('l/test/f.global').push(new Scope({
 		fs: require('./environment/fs'),
 		math: require('./environment/math'),
 		number: require('./environment/number'),
@@ -31,7 +33,18 @@ try {
 		js: require('./environment/js'),
 		node: { require: require }
 	}));
-	var v = f(environment);
+	runtimeEnvironment.scope.console = load('./environment/console.l');
+	function load(file) {
+		var source = fs.readFileSync(path.join(__dirname, file), 'utf8');
+		var s = parse(source);
+		var f = compile(
+			s,
+			environment,
+			interpretation
+		);
+		return f(runtimeEnvironment);
+	}
+	var v = f(runtimeEnvironment);
 	console.log(v);
 } catch (e) {
 	process.exitCode = 1;
