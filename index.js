@@ -23,17 +23,17 @@ try {
 	}));
 	var f = compile(s, environment, interpretation);
 	var runtimeEnvironment = require('l/test/f.global').push(new Scope({
-		math: require('./environment/math'),
-		number: require('./environment/number'),
-		string: require('./environment/string'),
-		array: require('./environment/array'),
-		object: require('./environment/object'),
 		global: require('./environment/global'),
 		js: require('./environment/js'),
 		node: { require: require }
 	}));
 	runtimeEnvironment.scope.console = load('./environment/console.l');
 	runtimeEnvironment.scope.fs = load('./environment/fs.l');
+	runtimeEnvironment.scope.math = load('./environment/math.l');
+	runtimeEnvironment.scope.number = load('./environment/number.l');
+	runtimeEnvironment.scope.string = load('./environment/string.l');
+	runtimeEnvironment.scope.array = load('./environment/array.l');
+	runtimeEnvironment.scope.object = load('./environment/object.l');
 	function load(file) {
 		var source = fs.readFileSync(path.join(__dirname, file), 'utf8');
 		var s = parse(source);

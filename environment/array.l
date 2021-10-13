@@ -1,0 +1,21 @@
+{
+	length: a => a.length,
+	indexOf: [a, e] => js.call [a.indexOf, a, [e]],
+	slice: [a, [i, j]] => js.call [a.slice, a, [i, j]],
+	push: [a, e] => js.call [a.push, a, e],
+	pop: a => js.call [a.pop, a, []],
+	unshift: [a, e] => js.call [a.unshift, a, e],
+	shift: a => js.call [a.shift, a, []],
+	splice: [a, [i, l, b]] => js.call [a.splice, a, js.call [global.Array.prototype.concat, [i, l], b]],
+	concat: [a, b] => js.call [a.concat, a, b],
+	forEach: [a, f] => js.call [a.forEach, a, [js.callback ([this, [e, i, a]] => f [e, i, a])]],
+	map: [a, f] => js.call [a.map, a, [js.callback ([this, [e, i, a]] => f [e, i, a])]],
+	find: [a, f] => js.call [a.find, a, [js.callback ([this, [e, i, a]] => f [e, i, a])]],
+	findIndex: [a, f] => js.call [a.findIndex, a, [js.callback ([this, [e, i, a]] => f [e, i, a])]],
+	filter: [a, f] => js.call [a.filter, a, [js.callback ([this, [e, i, a]] => f [e, i, a])]],
+	reduce: [a, [f, v0]] => js.call[a.reduce, a, [js.callback([this, [v, e, i, a]] => f[v, e, i, a]), v0]],
+	reduceRight: [a, [f, v0]] => js.call[a.reduceRight, a, [js.callback([this, [v, e, i, a]] => f[v, e, i, a]), v0]],
+	every: [a, f] => js.call [a.every, a, [js.callback ([this, [e, i, a]] => f [e, i, a])]],
+	some: [a, f] => js.call [a.some, a, [js.callback ([this, [e, i, a]] => f [e, i, a])]],
+	sort: [a, f] => js.call [a.sort, a, [js.callback ([this, [a, b]] => f [a, b])]]
+}
