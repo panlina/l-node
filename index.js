@@ -1,15 +1,15 @@
 var fs = require('fs');
 var path = require('path');
+var Environment = require('l/Environment');
 var Scope = require('l/Scope');
 var parse = require('l/parse');
 var compile = require('l/compile');
-var global = require('l/global');
 var interpretation = require('l/test/f');
 
 var [, , source] = process.argv;
 try {
 	var s = parse(source);
-	var environment = global.push(new Scope({
+	var environment = new Environment(new Scope({
 		console: 'variable',
 		fs: 'variable',
 		math: 'variable',
@@ -22,7 +22,7 @@ try {
 		node: 'variable'
 	}));
 	var f = compile(s, environment, interpretation);
-	var runtimeEnvironment = require('l/test/f.global').push(new Scope({
+	var runtimeEnvironment = new Environment(new Scope({
 		global: require('./environment/global'),
 		js: require('./environment/js'),
 		node: { require: require }
