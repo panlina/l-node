@@ -1,5 +1,5 @@
 var fs;
-let fs = node.require("fs");
+let fs = node.require "fs";
 
 let return = {
 	read: arguments => js.call [fs.readFileSync, fs, arguments],
